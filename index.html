@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лепешки и шаверма — Быстрое питание в Калининграде</title>
+    <link href="https://cdn.jsdelivr.net/npm/@fontsource/montserrat@5.0.19/index.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #D4520A;
+            --primary-dark: #A83E08;
+            --secondary: #F5A623;
+            --accent: #FFD700;
+            --bg-warm: #FFF8F0;
+            --bg-card: #FFFFFF;
+            --text-dark: #2D1B0E;
+            --text-medium: #5A4232;
+            --text-light: #8B7355;
+            --border: #E8D5C0;
+            --shadow: 0 4px 24px rgba(45, 27, 14, 0.10);
+            --shadow-lg: 0 12px 48px rgba(45, 27, 14, 0.15);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--bg-warm);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 248, 240, 0.92);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            transition: box-shadow 0.3s;
+        }
+
+        nav.scrolled {
+            box-shadow: 0 2px 20px rgba(45, 27, 14, 0.08);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0.9rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-logo .logo-icon {
+            font-size: 1.6rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-medium);
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+
+        /* HERO */
+        .hero {
+            padding: 8rem 2rem 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .hero-content {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #fff;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 900;
+            line-height: 1.15;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-desc {
+            font-size: 1.15rem;
+            color: var(--text-medium);
+            margin-bottom: 2rem;
+            max-width: 480px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.9rem 2rem;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: #fff;
+            box-shadow: 0 4px 16px rgba(212, 82, 10, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(212, 82, 10, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2.5rem;
+            margin-top: 2.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 0.78rem;
+            color: var(--text-light);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-images {
+            position: relative;
+            animation: fadeInRight 0.8s ease-out 0.2s both;
+        }
+
+        .hero-img-main {
+            width: 100%;
+            border-radius: 24px;
+            box-shadow: var(--shadow-lg);
+            object-fit: cover;
+            aspect-ratio: 4/5;
+        }
+
+        .hero-img-float {
+            position: absolute;
+            bottom: -20px;
+            left: -30px;
+            width: 180px;
+            height: 180px;
+            border-radius: 20px;
+            object-fit: cover;
+            border: 5px solid var(--bg-warm);
+            box-shadow: var(--shadow);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .hero-rating-badge {
+            position: absolute;
+            top: 20px;
+            right: -15px;
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 0.8rem 1.2rem;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            animation: float 3s ease-in-out infinite 0.5s;
+        }
+
+        .rating-number {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--primary);
+        }
+
+        .rating-stars {
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+
+        .rating-count {
+            font-size: 0.7rem;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        /* INFO SECTION */
+        .info-section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(212, 82, 10, 0.1), rgba(245, 166, 35, 0.1));
+            color: var(--primary);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.8rem;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .info-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid var(--border);
+        }
+
+        .info-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .info-card-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.2rem;
+            background: linear-gradient(135deg, rgba(212, 82, 10, 0.1), rgba(245, 166, 35, 0.1));
+        }
+
+        .info-card h3 {
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-card p {
+            color: var(--text-medium);
+            font-size: 0.92rem;
+        }
+
+        .info-card .highlight {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .schedule-table {
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+
+        .schedule-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.35rem 0;
+            border-bottom: 1px dashed var(--border);
+            font-size: 0.88rem;
+        }
+
+        .schedule-row:last-child {
+            border-bottom: none;
+        }
+
+        .schedule-row .day {
+            color: var(--text-medium);
+            font-weight: 600;
+        }
+
+        .schedule-row .time {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .open-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            background: #E8F5E9;
+            color: #2E7D32;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            margin-top: 0.5rem;
+        }
+
+        .open-badge .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #4CAF50;
+            animation: pulse 2s infinite;
+        }
+
+        /* MENU SECTION */
+        .menu-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(180deg, var(--bg-warm) 0%, #FFF0E0 100%);
+        }
+
+        .menu-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .menu-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid var(--border);
+        }
+
+        .menu-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .menu-card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .menu-card-body {
+            padding: 1.5rem;
+        }
+
+        .menu-card-body h3 {
+            font-size: 1.15rem;
+            font-weight: 800;
+            margin-bottom: 0.4rem;
+        }
+
+        .menu-card-body p {
+            color: var(--text-light);
+            font-size: 0.88rem;
+            margin-bottom: 1rem;
+        }
+
+        .menu-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(212, 82, 10, 0.08), rgba(245, 166, 35, 0.08));
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        /* REVIEWS */
+        .reviews-section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .review-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            transition: transform 0.3s;
+            position: relative;
+        }
+
+        .review-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .review-card::before {
+            content: '"';
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 4rem;
+            font-weight: 900;
+            color: rgba(212, 82, 10, 0.08);
+            line-height: 1;
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .review-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .review-avatar.a1 { background: linear-gradient(135deg, #FF6B35, #F7931E); }
+        .review-avatar.a2 { background: linear-gradient(135deg, #E040FB, #7C4DFF); }
+        .review-avatar.a3 { background: linear-gradient(135deg, #00BCD4, #009688); }
+
+        .review-author {
+            flex: 1;
+        }
+
+        .review-author h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+
+        .review-author .level {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .review-date {
+            font-size: 0.75rem;
+            color: var(--text-light);
+        }
+
+        .review-stars {
+            margin-bottom: 0.8rem;
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+
+        .review-text {
+            color: var(--text-medium);
+            font-size: 0.92rem;
+            line-height: 1.6;
+        }
+
+        .review-likes {
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            color: var(--text-light);
+            font-size: 0.82rem;
+            font-weight: 600;
+        }
+
+        /* CTA */
+        .cta-section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .cta-card {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 28px;
+            padding: 4rem 3rem;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+        }
+
+        .cta-card::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 50%;
+        }
+
+        .cta-card h2 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-card p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-card .btn {
+            background: #fff;
+            color: var(--primary);
+            font-weight: 800;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-card .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--text-dark);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-logo span {
+            color: var(--secondary);
+        }
+
+        footer p {
+            font-size: 0.85rem;
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+                padding-top: 7rem;
+                min-height: auto;
+            }
+
+            .hero h1 {
+                font-size: 2.4rem;
+            }
+
+            .hero-images {
+                order: -1;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .hero-img-float {
+                width: 130px;
+                height: 130px;
+                left: -15px;
+                bottom: -15px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--bg-warm);
+                flex-direction: column;
+                padding: 1rem 2rem;
+                gap: 1rem;
+                border-bottom: 1px solid var(--border);
+                box-shadow: var(--shadow);
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+
+            .hero-stats {
+                gap: 1.5rem;
+            }
+
+            .cta-card {
+                padding: 3rem 1.5rem;
+            }
+
+            .cta-card h2 {
+                font-size: 1.6rem;
+            }
+
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.9rem;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+
+            .stat-item {
+                text-align: left;
+            }
+
+            .section-title {
+                font-size: 1.7rem;
+            }
+        }
+
+        /* Scroll reveal for sections */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.7s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Image gallery */
+        .gallery-section {
+            padding: 2rem 2rem 5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.02);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-item:first-child {
+            height: 400px;
+        }
+
+        .gallery-item:last-child {
+            height: 400px;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-item:first-child,
+            .gallery-item:last-child {
+                height: 280px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="#" class="nav-logo">
+            <span class="logo-icon">🫓</span>
+            Лепешки и шаверма
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about">О нас</a></li>
+            <li><a href="#menu">Меню</a></li>
+            <li><a href="#gallery">Фото</a></li>
+            <li><a href="#reviews">Отзывы</a></li>
+            <li><a href="#contact">Контакты</a></li>
+        </ul>
+        <button class="nav-toggle" id="navToggle" aria-label="Меню">☰</button>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+    <div class="hero-content">
+        <div class="hero-badge">🔥 Быстрое питание</div>
+        <h1>Вкуснейшие <span>лепешки</span> и <span>шаверма</span> в Калининграде</h1>
+        <p class="hero-desc">Свежайшие беляши, хрустящие чебуреки, сочная шаверма и освежающий айран. Каждое утро готовим с любовью для вас!</p>
+        <div class="hero-actions">
+            <a href="#contact" class="btn btn-primary">📍 Как добраться</a>
+            <a href="#menu" class="btn btn-outline">Смотреть меню</a>
+        </div>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <div class="stat-value">4.0</div>
+                <div class="stat-label">Рейтинг</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">7/7</div>
+                <div class="stat-label">Дней в неделю</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">9:00</div>
+                <div class="stat-label">Открытие</div>
+            </div>
+        </div>
+    </div>
+    <div class="hero-images">
+        <img src="https://avatars.mds.yandex.net/get-altay/15539509/2a00000196668aa46c23f4e6d3e5e36b7589/XXXL" alt="Лепешки и шаверма" class="hero-img-main" loading="eager">
+        <img src="https://avatars.mds.yandex.net/get-altay/14021655/2a00000191d7da86cd815c25860b9b8022e3/XXXL" alt="Беляши и чебуреки" class="hero-img-float" loading="eager">
+        <div class="hero-rating-badge">
+            <div>
+                <div class="rating-number">4.0</div>
+            </div>
+            <div>
+                <div class="rating-stars">★★★★☆</div>
+                <div class="rating-count">3 оценки</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- INFO -->
+<section class="info-section" id="about">
+    <div class="section-header reveal">
+        <div class="section-tag">📍 Информация</div>
+        <h2 class="section-title">Всё, что нужно знать</h2>
+        <p class="section-subtitle">Мы всегда рады видеть вас!</p>
+    </div>
+    <div class="info-grid">
+        <div class="info-card reveal">
+            <div class="info-card-icon">📍</div>
+            <h3>Адрес</h3>
+            <p>ул. Черняховского, 15, лит.Б<br>Калининград, <span class="highlight">этаж 1</span></p>
+            <a href="https://yandex.ru/maps/-/CDwJQj~r" target="_blank" class="btn btn-primary" style="margin-top:1rem;font-size:0.85rem;padding:0.7rem 1.4rem;">
+                Открыть карту →
+            </a>
+        </div>
+        <div class="info-card reveal">
+            <div class="info-card-icon">🕐</div>
+            <h3>Режим работы</h3>
+            <div class="open-badge"><span class="dot"></span> Открыто до 18:00</div>
+            <div class="schedule-table" style="margin-top:1rem;">
+                <div class="schedule-row"><span class="day">Пн</span><span class="time">09:00–18:00</span></div>
+                <div class="schedule-row"><span class="day">Вт</span><span class="time">09:00–18:00</span></div>
+                <div class="schedule-row"><span class="day">Ср</span><span class="time">09:00–18:00</span></div>
+                <div class="schedule-row"><span class="day">Чт</span><span class="time">09:00–18:00</span></div>
+                <div class="schedule-row"><span class="day">Пт</span><span class="time">09:00–18:00</span></div>
+                <div class="schedule-row"><span class="day">Сб</span><span class="time">09:00–18:00</span></div>
+                <div class="schedule-row"><span class="day">Вс</span><span class="time">09:00–18:00</span></div>
+            </div>
+        </div>
+        <div class="info-card reveal">
+            <div class="info-card-icon">⭐</div>
+            <h3>Рейтинг</h3>
+            <p style="font-size:2.5rem;font-weight:900;color:var(--primary);">4.0 <span style="font-size:1rem;color:var(--secondary);">★★★★☆</span></p>
+            <p style="margin-top:0.5rem;">На основе <span class="highlight">3 оценок</span></p>
+            <div style="margin-top:1rem;">
+                <a href="#reviews" class="btn btn-outline" style="font-size:0.85rem;padding:0.7rem 1.4rem;">Читать отзывы →</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MENU -->
+<section class="menu-section" id="menu">
+    <div class="menu-inner">
+        <div class="section-header reveal">
+            <div class="section-tag">🍽️ Меню</div>
+            <h2 class="section-title">Наши хиты</h2>
+            <p class="section-subtitle">Попробуйте то, за чем люди ездят каждые выходные</p>
+        </div>
+        <div class="menu-grid">
+            <div class="menu-card reveal">
+                <div style="height:200px;background:linear-gradient(135deg,#FF6B35,#F7931E);display:flex;align-items:center;justify-content:center;font-size:5rem;">🫓</div>
+                <div class="menu-card-body">
+                    <h3>Лепешки</h3>
+                    <p>Свежие, горячие, ароматные лепешки прямо из печи</p>
+                    <span class="menu-tag">🔥 Хит</span>
+                </div>
+            </div>
+            <div class="menu-card reveal">
+                <div style="height:200px;background:linear-gradient(135deg,#D4520A,#A83E08);display:flex;align-items:center;justify-content:center;font-size:5rem;">🌯</div>
+                <div class="menu-card-body">
+                    <h3>Шаверма</h3>
+                    <p>Сочная шаверма с свежими овощами и фирменным соусом</p>
+                    <span class="menu-tag">⭐ Популярное</span>
+                </div>
+            </div>
+            <div class="menu-card reveal">
+                <div style="height:200px;background:linear-gradient(135deg,#FFB74D,#F57C00);display:flex;align-items:center;justify-content:center;font-size:5rem;">🥟</div>
+                <div class="menu-card-body">
+                    <h3>Беляши</h3>
+                    <p>«Самые вкусные беляши» — по словам наших постоянных гостей</p>
+                    <span class="menu-tag">❤️ Выбор Дениса</span>
+                </div>
+            </div>
+            <div class="menu-card reveal">
+                <div style="height:200px;background:linear-gradient(135deg,#8D6E63,#5D4037);display:flex;align-items:center;justify-content:center;font-size:5rem;">🥟</div>
+                <div class="menu-card-body">
+                    <h3>Чебуреки</h3>
+                    <p>Хрустящие чебуреки с сочной начинкой — ради них ездят каждые выходные!</p>
+                    <span class="menu-tag">💎 Выбор Алины</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery-section" id="gallery">
+    <div class="section-header reveal">
+        <div class="section-tag">📸 Фотографии</div>
+        <h2 class="section-title">Загляните к нам</h2>
+        <p class="section-subtitle">Фотографии нашего заведения</p>
+    </div>
+    <div class="gallery-grid reveal">
+        <div class="gallery-item">
+            <img src="https://avatars.mds.yandex.net/get-altay/15539509/2a00000196668aa46c23f4e6d3e5e36b7589/XXXL" alt="Фото заведения" loading="lazy">
+        </div>
+        <div class="gallery-item">
+            <img src="https://avatars.mds.yandex.net/get-altay/14021655/2a00000191d7da86cd815c25860b9b8022e3/XXXL" alt="Фото блюд" loading="lazy">
+        </div>
+    </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews-section" id="reviews">
+    <div class="section-header reveal">
+        <div class="section-tag">💬 Отзывы</div>
+        <h2 class="section-title">Что говорят наши гости</h2>
+        <p class="section-subtitle">3 отзыва · Рейтинг 4.0</p>
+    </div>
+    <div class="reviews-grid">
+        <div class="review-card reveal">
+            <div class="review-header">
+                <div class="review-avatar a1">Д</div>
+                <div class="review-author">
+                    <h4>Денис Тюкавин</h4>
+                    <span class="level">Знаток города 4 уровня</span>
+                </div>
+                <span class="review-date">21 июня 2025</span>
+            </div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">Самые вкусные беляши и айран хорош, постоянная очередь говорит сама за себя</p>
+            <div class="review-likes">👍 1</div>
+        </div>
+        <div class="review-card reveal">
+            <div class="review-header">
+                <div class="review-avatar a2">А</div>
+                <div class="review-author">
+                    <h4>Алина Никулина</h4>
+                    <span class="level">Знаток города 8 уровня</span>
+                </div>
+                <span class="review-date">18 июля 2025</span>
+            </div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">Чебуреки восторг!!! Ездим каждые выходные ради них</p>
+            <div class="review-likes">👍 0</div>
+        </div>
+        <div class="review-card reveal">
+            <div class="review-header">
+                <div class="review-avatar a3">И</div>
+                <div class="review-author">
+                    <h4>Илья Ляшко</h4>
+                    <span class="level">Знаток города 7 уровня</span>
+                </div>
+                <span class="review-date">31 мая 2025</span>
+            </div>
+            <div class="review-stars">★★☆☆☆</div>
+            <p class="review-text">после такой шавы даже таблетки от поноса не помогут</p>
+            <div class="review-likes">👍 0</div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+    <div class="cta-card reveal">
+        <h2>Ждём вас каждый день с 9:00 до 18:00!</h2>
+        <p>ул. Черняховского, 15, лит.Б, Калининград · этаж 1</p>
+        <a href="https://yandex.ru/maps/-/CDwJQj~r" target="_blank" class="btn">
+            📍 Построить маршрут
+        </a>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-logo">🫓 Лепешки и <span>шаверма</span></div>
+        <p>Быстрое питание · Калининград · ул. Черняховского, 15, лит.Б</p>
+        <p style="margin-top:0.5rem;opacity:0.5;">© 2026 Все права защищены</p>
+    </div>
+</footer>
+
+<script>
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        navbar.classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    // Mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
+        navToggle.textContent = navLinks.classList.contains('open') ? '✕' : '☰';
+    });
+
+    // Close mobile nav on link click
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('open');
+            navToggle.textContent = '☰';
+        });
+    });
+
+    // Scroll reveal
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // Open status check
+    function updateOpenStatus() {
+        const now = new Date();
+        const hours = now.getHours();
+        const openBadge = document.querySelector('.open-badge');
+        if (openBadge) {
+            if (hours >= 9 && hours < 18) {
+                openBadge.innerHTML = '<span class="dot"></span> Открыто до 18:00';
+                openBadge.style.background = '#E8F5E9';
+                openBadge.style.color = '#2E7D32';
+            } else {
+                openBadge.innerHTML = 'Закрыто · Откроется в 09:00';
+                openBadge.style.background = '#FFEBEE';
+                openBadge.style.color = '#C62828';
+                openBadge.querySelector('.dot')?.remove();
+            }
+        }
+    }
+    updateOpenStatus();
+    setInterval(updateOpenStatus, 60000);
+</script>
+
+</body>
+</html>
+
